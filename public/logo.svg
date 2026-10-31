@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Sombra suave -->
+  <ellipse cx="60" cy="108" rx="32" ry="6" fill="#e8dcc8" opacity="0.5"/>
+
+  <!-- Cáscara exterior del coco (amarillo pastel) -->
+  <ellipse cx="60" cy="58" rx="44" ry="42" fill="#F5D98E"/>
+  <!-- Textura fibras exteriores -->
+  <ellipse cx="60" cy="58" rx="44" ry="42" fill="none" stroke="#E8C96B" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Corte interior (la mitad visible) -->
+  <ellipse cx="60" cy="60" rx="34" ry="32" fill="#FFF8E7"/>
+
+  <!-- Carne del coco (anillo blanco cremoso) -->
+  <ellipse cx="60" cy="60" rx="34" ry="32" fill="none" stroke="#FDF0D5" stroke-width="8"/>
+
+  <!-- Agua de coco en el centro -->
+  <ellipse cx="60" cy="65" rx="18" ry="14" fill="#F5E6A3" opacity="0.6"/>
+
+  <!-- Tres "ojos" del coco en la parte superior -->
+  <circle cx="50" cy="34" r="3.5" fill="#C9A84C" opacity="0.7"/>
+  <circle cx="60" cy="30" r="3" fill="#C9A84C" opacity="0.7"/>
+  <circle cx="70" cy="34" r="3.5" fill="#C9A84C" opacity="0.7"/>
+
+  <!-- Detalle de fibras (pelitos) arriba del coco -->
+  <path d="M38 28 Q35 18 32 12" stroke="#D4A843" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M48 22 Q47 12 50 6" stroke="#D4A843" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M72 22 Q73 12 70 6" stroke="#D4A843" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M82 28 Q85 18 88 12" stroke="#D4A843" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Brillo superior -->
+  <ellipse cx="48" cy="48" rx="8" ry="5" fill="#FFFFFF" opacity="0.35" transform="rotate(-20 48 48)"/>
+</svg>

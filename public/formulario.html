@@ -4,29 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Coquito Amarillo S.A.S. — Registra tus pedidos de forma rápida y sencilla.">
     <title>Coquito Amarillo S.A.S. — Registro de Pedidos</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
+    <!-- Burbujas decorativas de fondo -->
+    <div class="burbuja burbuja-1" aria-hidden="true"></div>
+    <div class="burbuja burbuja-2" aria-hidden="true"></div>
+    <div class="burbuja burbuja-3" aria-hidden="true"></div>
+    <div class="burbuja burbuja-4" aria-hidden="true"></div>
+
     <main class="contenedor-formulario">
-        <h1>Registro de Pedidos</h1>
-        <form id="formPedido">
-            <label for="nombreCliente">Nombre del cliente</label>
-            <input type="text" id="nombreCliente" name="nombreCliente" required>
+        <!-- Encabezado con logo -->
+        <header class="encabezado">
+            <img src="logo.svg" alt="Logo Coquito Amarillo" class="logo" width="56" height="56">
+            <div class="encabezado-texto">
+                <h1>Coquito Amarillo</h1>
+                <p class="subtitulo">Registro de Pedidos</p>
+            </div>
+        </header>
 
-            <label for="producto">Producto</label>
-            <input type="text" id="producto" name="producto" required>
+        <form id="formPedido" autocomplete="off">
+            <div class="campo">
+                <label for="nombreCliente">
+                    <span class="icono-campo">👤</span> Nombre del cliente
+                </label>
+                <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Ej: María López" required>
+            </div>
 
-            <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" name="cantidad" min="1" required>
+            <div class="campo">
+                <label for="producto">
+                    <span class="icono-campo">🥥</span> Producto
+                </label>
+                <input type="text" id="producto" name="producto" placeholder="Ej: Coco rallado premium" required>
+            </div>
 
-            <label for="correo">Correo electrónico</label>
-            <input type="email" id="correo" name="correo" required>
+            <div class="fila-doble">
+                <div class="campo">
+                    <label for="cantidad">
+                        <span class="icono-campo">📦</span> Cantidad
+                    </label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" placeholder="1" required>
+                </div>
 
-            <button type="submit">Registrar pedido</button>
+                <div class="campo">
+                    <label for="correo">
+                        <span class="icono-campo">✉️</span> Correo electrónico
+                    </label>
+                    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+                </div>
+            </div>
+
+            <button type="submit" id="btnRegistrar">
+                <span class="btn-texto">Registrar pedido</span>
+                <span class="btn-icono">→</span>
+            </button>
         </form>
+
         <p id="mensaje"></p>
+
+        <footer class="pie">
+            <p>Coquito Amarillo S.A.S. &copy; 2026</p>
+        </footer>
     </main>
     <script src="app.js"></script>
 </body>

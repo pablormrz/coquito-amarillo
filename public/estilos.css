@@ -1,75 +1,340 @@
+/* ========================================
+   COQUITO AMARILLO — Estilos pastel
+   ======================================== */
+
+/* ---------- Reset & Base ---------- */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Paleta pastel */
+    --amarillo-suave: #FFF3CD;
+    --amarillo-medio: #F5D98E;
+    --amarillo-fuerte: #E8C96B;
+    --crema: #FFFBF0;
+    --rosa-pastel: #FFD6E0;
+    --lila-pastel: #E2D4F0;
+    --verde-pastel: #D4EDDA;
+    --azul-pastel: #D6EAF8;
+    --texto-primario: #4A3728;
+    --texto-secundario: #7A6654;
+    --borde-input: #E8DCC8;
+    --fondo-input: #FFFDF7;
+    --sombra: rgba(139, 109, 71, 0.08);
+    --sombra-hover: rgba(139, 109, 71, 0.16);
+    --exito: #5BA06D;
+    --error: #D45D5D;
+    --radio: 14px;
 }
 
 body {
-    font-family: "Segoe UI", sans-serif;
-    background-color: #FDF6E3;
+    font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(145deg, var(--amarillo-suave) 0%, var(--crema) 40%, var(--lila-pastel) 100%);
+    min-height: 100vh;
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* ---------- Burbujas decorativas ---------- */
+.burbuja {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.35;
+    pointer-events: none;
+    animation: flotar 8s ease-in-out infinite;
+}
+
+.burbuja-1 {
+    width: 200px;
+    height: 200px;
+    background: var(--rosa-pastel);
+    top: -60px;
+    left: -60px;
+    animation-duration: 10s;
+}
+
+.burbuja-2 {
+    width: 150px;
+    height: 150px;
+    background: var(--azul-pastel);
+    bottom: 40px;
+    right: -40px;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.burbuja-3 {
+    width: 100px;
+    height: 100px;
+    background: var(--verde-pastel);
+    top: 50%;
+    left: 5%;
+    animation-duration: 9s;
+    animation-delay: 4s;
+}
+
+.burbuja-4 {
+    width: 120px;
+    height: 120px;
+    background: var(--amarillo-medio);
+    top: 15%;
+    right: 8%;
+    animation-duration: 11s;
+    animation-delay: 1s;
+}
+
+@keyframes flotar {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+/* ---------- Tarjeta formulario ---------- */
 .contenedor-formulario {
-    background: #FFFFFF;
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    padding: 2.5rem 2.5rem 2rem;
     width: 100%;
-    max-width: 420px;
+    max-width: 520px;
+    box-shadow:
+        0 4px 24px var(--sombra),
+        0 1px 4px rgba(255, 255, 255, 0.6) inset;
+    position: relative;
+    z-index: 1;
+    animation: aparecer 0.6s ease-out;
 }
 
-form label {
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 2px solid var(--amarillo-suave);
+}
+
+.logo {
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(212, 168, 67, 0.3));
+    animation: girar-logo 1s ease-out;
+}
+
+@keyframes girar-logo {
+    from {
+        transform: rotate(-15deg) scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.encabezado-texto h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--texto-primario);
+    line-height: 1.2;
+}
+
+.subtitulo {
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    font-weight: 500;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+}
+
+/* ---------- Campos del formulario ---------- */
+.campo {
+    margin-bottom: 1.15rem;
+}
+
+.campo label {
     display: block;
-    margin-top: 1rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    color: #4A0E5C;
+    color: var(--texto-secundario);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-form input {
+.icono-campo {
+    font-size: 0.9rem;
+    margin-right: 2px;
+}
+
+.campo input {
     width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 0.72rem 1rem;
+    border: 1.5px solid var(--borde-input);
+    border-radius: var(--radio);
+    background: var(--fondo-input);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--texto-primario);
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    outline: none;
 }
 
-button {
+.campo input::placeholder {
+    color: #C4B89A;
+    font-weight: 400;
+}
+
+.campo input:focus {
+    border-color: var(--amarillo-fuerte);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3.5px rgba(232, 201, 107, 0.22);
+}
+
+/* Fila doble (cantidad + correo) */
+.fila-doble {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+}
+
+/* ---------- Botón ---------- */
+button[type="submit"] {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     margin-top: 1.5rem;
-    background-color: #C8A800;
-    color: #4A0E5C;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(135deg, var(--amarillo-medio) 0%, var(--amarillo-fuerte) 100%);
+    color: var(--texto-primario);
     border: none;
-    padding: 0.7rem 1rem;
-    border-radius: 6px;
-    font-weight: bold;
+    border-radius: var(--radio);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 12px rgba(232, 201, 107, 0.35);
 }
 
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232, 201, 107, 0.5);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(232, 201, 107, 0.3);
+}
+
+.btn-icono {
+    font-size: 1.2rem;
+    transition: transform 0.25s;
+}
+
+button[type="submit"]:hover .btn-icono {
+    transform: translateX(4px);
+}
+
+/* ---------- Mensaje ---------- */
 #mensaje {
     margin-top: 1rem;
     font-weight: 600;
+    font-size: 0.92rem;
+    text-align: center;
+    padding: 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#mensaje:not(:empty) {
+    padding: 0.75rem 1rem;
 }
 
 #mensaje.exito {
-    color: #2E7D32;
+    color: var(--exito);
+    background: rgba(91, 160, 109, 0.1);
+    border: 1px solid rgba(91, 160, 109, 0.2);
 }
 
 #mensaje.error {
-    color: #C62828;
+    color: var(--error);
+    background: rgba(212, 93, 93, 0.1);
+    border: 1px solid rgba(212, 93, 93, 0.2);
 }
 
-@media (max-width: 480px) {
+/* ---------- Footer ---------- */
+.pie {
+    margin-top: 1.75rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
+    opacity: 0.7;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 540px) {
     body {
         padding: 1rem;
+        align-items: flex-start;
     }
 
     .contenedor-formulario {
-        padding: 1.25rem;
+        padding: 1.75rem 1.5rem 1.5rem;
+        border-radius: 18px;
     }
 
-    button {
-        width: 100%;
+    .encabezado {
+        gap: 0.75rem;
+    }
+
+    .logo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .encabezado-texto h1 {
+        font-size: 1.3rem;
+    }
+
+    .fila-doble {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    button[type="submit"] {
+        padding: 0.9rem;
     }
 }
