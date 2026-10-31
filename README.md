@@ -58,32 +58,13 @@ coquito-amarillo/
 ```
 ## Decisiones de diseño
 
-### 1. Arquitectura y Backend (POO y Persistencia)
-- **Encapsulamiento e integridad de datos (`RegistroPedido`):**
-  - Uso de campos privados (`#nombreCliente`, `#producto`, `#cantidad`, `#correo`, `#fecha`) con métodos *getters* para proteger el estado del objeto y evitar modificaciones indebidas.
-  - Método estático `validar(datos)` para centralizar y aplicar reglas de validación (campos obligatorios, límites de caracteres, cantidades enteras positivas y expresión regular para formato de correo electrónico) antes de procesar el registro.
-  - Método `toCSV()` con saneamiento y escape de comas/comillas según estándar para no corromper la estructura del archivo plano.
+### 1. Backend y Gestión de Datos
+- **Validación y consistencia:** Se verifican todos los datos ingresados (campos obligatorios, formato de correo y cantidades válidas) antes de procesarlos para evitar registros incompletos o erróneos.
+- **Doble almacenamiento independiente:** Cada pedido se guarda simultáneamente en base de datos (MySQL) y en un archivo de respaldo (CSV), garantizando que la información se conserve incluso si uno de los medios falla.
+- **Estructura modular:** El código se organizó en componentes separados para que el sistema sea claro, seguro y fácil de mantener o escalar en el futuro.
 
-- **Patrón Repositorio y Herencia (`Repositorio`, `RepositorioCSV`, `RepositorioMySQL`):**
-  - Implementación de una clase base abstracta `Repositorio` para desacoplar la capa de persistencia del controlador HTTP Express.
-  - Subclase `RepositorioCSV` para escritura incremental (`appendFile`) sin sobreescribir el historial y asegurando encabezados en la creación inicial.
-  - Subclase `RepositorioMySQL` usando *pool* de conexiones (`mysql2/promise`) y consultas preparadas con parámetros (`?`) para prevenir inyecciones SQL.
-
-- **Persistencia Concurrente (`Promise.allSettled`):**
-  - Permite guardar en MySQL y en el archivo CSV de forma paralela sin que el bloqueo de un medio detenga al otro, capturando errores de forma granular para informar al cliente exactamente qué destino tuvo inconvenientes.
-
-### 2. Frontend y Experiencia de Usuario (UI / UX)
-- **Comunicación asíncrona (Fetch API):**
-  - Envío del formulario mediante AJAX (`fetch`), previniendo la recarga de página (`event.preventDefault()`) para brindar retroalimentación inmediata sin interrumpir la navegación.
-
-- **Paleta de colores pastel:**
-  - Selección de una gama cromática suave y equilibrada (amarillo pastel `#FFF3CD` / `#F5D98E`, crema `#FFFBF0`, lila `#E2D4F0` y rosa `#FFD6E0`) que refleja la identidad de "Coquito Amarillo" de manera amigable y moderna.
-
-- **Identidad de marca y Logo SVG:**
-  - Creación de un isotipo vectorial escalable (`logo.svg`) representando un coco amarillo partido a la mitad con detalles de pulpa y textura. Se implementó tanto en la cabecera junto al título como en el `favicon` de la pestaña del navegador para una identidad visual consistente.
-
-- **Estilo Glassmorphism y Microinteracciones:**
-  - Uso de tarjeta con efecto de vidrio esmerilado (`backdrop-filter: blur`), elementos flotantes de fondo animados (`keyframes`), bordes suaves y efectos visuales de interacción (*hover*, estados de foco con sombras luminosas y avisos dinámicos de éxito o error).
-
-- **Diseño responsivo y tipografía moderna:**
-  - Implementación de fuente web legible (*Outfit*) y diseño adaptable para garantizar una visualización óptima tanto en computadores como en dispositivos móviles.
+### 2. Interfaz y Experiencia de Usuario (UI / UX)
+- **Envío ágil y sin recargas:** El formulario procesa la solicitud de forma inmediata, mostrando avisos claros de éxito o error sin tener que reiniciar la página.
+- **Identidad visual personalizada:** Uso de una paleta en tonos pastel (amarillo y crema) acorde a la marca, acompañada de un logotipo vectorial y tipografía moderna y legible.
+- **Diseño interactivo y moderno:** Efecto de tarjeta translúcida con bordes suaves, animaciones sutiles y retroalimentación visual al interactuar con los campos y el botón de envío.
+- **Diseño adaptable:** La interfaz se ajusta automáticamente para una visualización cómoda y limpia tanto en computadores como en dispositivos móviles.
