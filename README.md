@@ -1,6 +1,8 @@
 # Sistema de pedidos — Coquito Amarillo S.A.S.
 ## Descripción
 Aplicación web que registra pedidos en Datos.csv y en MySQL.
+### Diseño de la Interfaz
+(capturas/Diseño.png)
 ## Requisitos
 - Node.js (LTS)
 - MySQL 8 (o XAMPP)
